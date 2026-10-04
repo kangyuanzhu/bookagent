@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "video-bookagent"
+version = "0.1.0"
+description = "Turn timestamped video transcripts and original slides into a concise PowerPoint reading book."
+requires-python = ">=3.11"
+dependencies = [
+  "openai>=2.0,<3",
+  "pydantic>=2.10,<3",
+  "Pillow>=11,<13",
+  "python-pptx>=1.0,<2",
+  "reportlab>=4.2,<5",
+  "yt-dlp>=2025.10.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "pypdf>=5,<7"]
+
+[project.scripts]
+bookagent = "bookagent.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["bookagent*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
